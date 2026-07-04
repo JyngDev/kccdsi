@@ -1,0 +1,7 @@
+.sidebar #leftside-navigation ul li.active a {
+  color: #fff !important;
+  font-weight: 500;
+  background: #E53C49 !important;
+  padding-left: 24px;
+  border-radius: 6px;
+}
