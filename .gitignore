@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+
+# node
+node_modules
+npm-debug.log*
+yarn-error.log*
+package-lock.json.lock
+
+# Next.js
+next-app/.next
+next-app/out
+next-app/build
+
+# env
+.env
+.env.local
+.env.*.local
+
+# editor / tooling
+.vscode
+.idea
+
+# Claude Code session state
+.claude
+
+# legacy image mirror — img-dl/ duplicates img/
+img-dl
+
+# logs
+*.log
