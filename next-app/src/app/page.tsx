@@ -20,62 +20,79 @@ const products = [
     subtitle: "Glass Wool",
     tag: "01",
     desc: "불연성과 단열성이 뛰어나고 친환경성을 입증한 무기질 인조광물섬유 단열재.",
-    image: "/img/vt-gr.jpg",
-  },
-  {
-    href: "/items/ds-m-02",
-    title: "미네랄울",
-    subtitle: "Mineral Wool",
-    tag: "02",
-    desc: "규산 칼슘계 광석을 고온 용융시켜 만든, 뛰어난 흡음/단열 성능의 보온재.",
-    image: "/img/vt-mn00.jpg",
-  },
-  {
-    href: "/items/ds-m-03",
-    title: "세라크울",
-    subtitle: "Cera Wool",
-    tag: "03",
-    desc: "Spinning 공법으로 제조한 초고온 내화 단열재. 산업로/화학 플랜트용.",
-    image: "/img/vt-cr.jpg",
+    image: "/img/vt-gr01.jpg",
   },
   {
     href: "/items/ds-m-04",
     title: "고무발포보온재",
     subtitle: "Rubber Foam",
-    tag: "04",
+    tag: "02",
     desc: "난연 성능이 탁월하고 유해물질이 없는 친환경 발포 보온재.",
     image: "/img/vt-bp.jpg",
   },
   {
     href: "/items/ds-m-05",
-    title: "가교 은박보온재",
+    title: "가교(무) 은박보온재",
     subtitle: "Cross-linked Foil",
-    tag: "05",
+    tag: "03",
     desc: "은박 마감으로 복사열을 반사, 결로 방지에 특화된 다층 보온재.",
-    image: "/img/vt-al.jpg",
+    image: "/img/nav-ec.png",
+  },
+  {
+    href: "/items/ds-m-09",
+    title: "멜라민폼",
+    subtitle: "Melamine Foam",
+    tag: "04",
+    desc: "불연 등급의 3차원 오픈셀 폼. 흡음·단열·방음 성능을 동시에 만족합니다.",
+    image: "/img/vt-mf.jpg",
+  },
+  {
+    href: "/items/ds-m-03",
+    title: "세라크울",
+    subtitle: "Cera Wool",
+    tag: "05",
+    desc: "Spinning 공법으로 제조한 초고온 내화 단열재. 산업로·화학 플랜트용.",
+    image: "/img/vt-cr.jpg",
+  },
+  {
+    href: "/items/ds-s-ks",
+    title: "케이싱 자재",
+    subtitle: "Casing Materials",
+    tag: "06",
+    desc: "함석·SUS·알루미늄까지 — 배관 및 덕트 마감을 위한 케이싱 라인업.",
+    image: "/img/nav-ks.png",
   },
   {
     href: "/items/ds-m-06",
     title: "APS / PPA 카바",
     subtitle: "APS / PPA Cover",
-    tag: "06",
-    desc: "배관/덕트에 감싸는 성형 보온카바. 시공성이 뛰어나 현장 대응력이 우수합니다.",
+    tag: "07",
+    desc: "배관·덕트에 감싸는 성형 보온카바. 시공성이 뛰어나 현장 대응력이 우수합니다.",
     image: "/img/vt-aps.jpg",
+  },
+  {
+    href: "/items/ds-m-02",
+    title: "미네랄울",
+    subtitle: "Mineral Wool",
+    tag: "08",
+    desc: "규산 칼슘계 광석을 고온 용융시켜 만든, 뛰어난 흡음·단열 성능의 보온재.",
+    image: "/img/vt-mn00.jpg",
   },
 ];
 
 const subsidiaries = [
-  { href: "/items/ds-s-pe", label: "PE폼", icon: "/img/nav-pe.png" },
-  { href: "/items/ds-s-ks", label: "케이싱 자재", icon: "/img/nav-ks.png" },
-  { href: "/items/ds-s-mst", label: "마스 테이프", icon: "/img/nav-mas.png" },
-  { href: "/items/ds-s-flx", label: "후렉시블", icon: "/img/nav-fl.png" },
   { href: "/items/ds-s-mgt", label: "매직 테이프", icon: "/img/nav-mt.png" },
-  { href: "/items/ds-s-gp", label: "골판지", icon: "/img/nav-gp.png" },
-  { href: "/items/ds-s-mp", label: "보온핀", icon: "/img/nav-bo.png" },
+  { href: "/items/ds-s-alt", label: "AL 은박테이프", icon: "/img/vt007.jpg" },
+  { href: "/items/ds-s-eva", label: "Eva 네오프렌", icon: "/img/vt008.jpg" },
+  { href: "/items/ds-s-rft", label: "고무발포 테이프", icon: "/img/vt009.jpg" },
   { href: "/items/ds-s-al", label: "알루미늄 밴드", icon: "/img/nav-al.png" },
-  { href: "/items/ds-s-bg", label: "단열벽지", icon: "/img/nav-dy.png" },
   { href: "/items/ds-s-dp", label: "동파방지선", icon: "/img/nav-dp.png" },
+  { href: "/items/ds-s-flx", label: "후렉시블", icon: "/img/nav-fl.png" },
+  { href: "/items/ds-s-mp", label: "보온핀", icon: "/img/nav-bo.png" },
+  { href: "/items/ds-s-gp", label: "골판지", icon: "/img/nav-gp.png" },
   { href: "/items/ds-s-bt", label: "불티 방지막", icon: "/img/nav-bt.png" },
+  { href: "/items/ds-s-bg", label: "단열벽지", icon: "/img/nav-dy.png" },
+  { href: "/items/ds-m-08", label: "열반사단열재", icon: "/img/nav-rf.png" },
 ];
 
 const pillars = [
@@ -144,7 +161,7 @@ export default function HomePage() {
             검증된 품질과 신속한 공급으로 현장을 함께합니다.
           </p>
           <div className="home-v2__cta-row">
-            <Link href="/items/ds-m-01" className="home-v2__btn home-v2__btn--primary">
+            <Link href="/items/ds-m" className="home-v2__btn home-v2__btn--primary">
               제품 살펴보기
               <ArrowRight size={16} strokeWidth={2.2} />
             </Link>
@@ -182,7 +199,7 @@ export default function HomePage() {
             <h2 className="home-v2__h2">
               모든 현장을 위한 전문 라인업.
             </h2>
-            <Link href="/items/ds-m-01" className="home-v2__section-cta">
+            <Link href="/items/ds-m" className="home-v2__section-cta">
               전체 보기
               <ArrowRight size={14} strokeWidth={2.2} />
             </Link>
@@ -217,27 +234,16 @@ export default function HomePage() {
             <p className="home-v2__section-lead">
               보온핀, 알루미늄 밴드, 매직 테이프까지 — 시공에 꼭 필요한 부자재 라인업.
             </p>
-            <Link href="/items/ds-s" className="home-v2__section-cta">
-              전체 보기
-              <ArrowRight size={14} strokeWidth={2.2} />
-            </Link>
           </div>
-          <div className="home-v2__marquee" aria-label="부자재 목록">
-            <div className="home-v2__marquee-track">
-              {[...subsidiaries, ...subsidiaries].map((s, i) => (
-                <Link
-                  key={`${s.href}-${i}`}
-                  href={s.href}
-                  className="home-v2__marquee-card"
-                  aria-hidden={i >= subsidiaries.length}
-                >
-                  <div className="home-v2__marquee-icon">
-                    <img src={s.icon} alt="" />
-                  </div>
-                  <div className="home-v2__marquee-label">{s.label}</div>
-                </Link>
-              ))}
-            </div>
+          <div className="home-v2__subs-grid" aria-label="부자재 목록">
+            {subsidiaries.map((s) => (
+              <Link key={s.href} href={s.href} className="home-v2__sub-card">
+                <div className="home-v2__sub-icon">
+                  <img src={s.icon} alt="" />
+                </div>
+                <div className="home-v2__sub-label">{s.label}</div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

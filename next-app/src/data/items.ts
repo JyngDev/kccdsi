@@ -138,7 +138,7 @@ export type OverviewItem = {
 
 /** Grid data for the overview pages. */
 export const mainOverviewItems: OverviewItem[] = [
-  { slug: "ds-m-01", label: "그라스울(유리섬유)", image: "/img/vt-gr.jpg" },
+  { slug: "ds-m-01", label: "그라스울(유리섬유)", image: "/img/vt-gr01.jpg" },
   { slug: "ds-m-04", label: "고무발포보온재", image: "/img/vt-bp.jpg" },
   { slug: "ds-m-05", label: "가교(무)은박 보온재", image: "/img/vt-al.jpg" },
   { slug: "ds-m-09", label: "멜라민폼", image: "/img/vx800.jpg" },
@@ -205,7 +205,7 @@ const grassullSections = [
 
 const raw: Array<[string, string, string, string?]> = [
   ["ds-m", "주요 제품", "전체 라인업"],
-  ["ds-m-01", "그라스울(유리섬유)", "그라스울", "/img/vt-gr.jpg"],
+  ["ds-m-01", "그라스울(유리섬유)", "그라스울", "/img/vt-gr01.jpg"],
   ["ds-m-01-01", "그라스울(유리섬유)", "파이프 카바"],
   ["ds-m-01-02", "그라스울(유리섬유)", "셀프 카바"],
   ["ds-m-01-03", "그라스울(유리섬유)", "그라스울 블랭킷"],

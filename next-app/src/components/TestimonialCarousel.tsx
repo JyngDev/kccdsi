@@ -83,21 +83,6 @@ export default function TestimonialCarousel({
         <ChevronRight size={22} strokeWidth={2} />
       </button>
 
-      <div className="home-v2__quote-dots" role="tablist" aria-label="후기 인디케이터">
-        {items.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            role="tab"
-            aria-selected={i === index}
-            aria-label={`후기 ${i + 1}`}
-            className={`home-v2__quote-dot ${
-              i === index ? "is-active" : ""
-            }`}
-            onClick={() => setIndex(i)}
-          />
-        ))}
-      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export const megaMenus: MegaMenu[] = [
     label: "주요 제품",
     href: "/items/ds-m",
     items: [
-      { href: "/items/ds-m-01", label: "그라스울(유리섬유)", icon: "/img/nav-gr.png" },
+      { href: "/items/ds-m-01", label: "그라스울(유리섬유)", icon: "/img/vt-gr01.jpg" },
       { href: "/items/ds-m-04", label: "고무발포보온재", icon: "/img/nav-bp.png" },
       { href: "/items/ds-m-05", label: "가교(무)은박 보온재", icon: "/img/nav-ec.png" },
       { href: "/items/ds-m-09", label: "멜라민폼", icon: "/img/vt-mf.jpg" },
