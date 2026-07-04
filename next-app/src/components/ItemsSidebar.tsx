@@ -17,20 +17,39 @@ export default function ItemsSidebar({
   initialOpenSlug,
 }: Props) {
   const [openSlug, setOpenSlug] = useState<string | null>(initialOpenSlug);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const toggle = (slug: string) => {
     setOpenSlug((prev) => (prev === slug ? null : slug));
   };
 
+  const currentLabel = (() => {
+    for (const cat of categories) {
+      if (cat.slug === currentSlug) return cat.label;
+      for (const child of cat.children) {
+        if (child.slug === currentSlug) return child.label;
+      }
+    }
+    return "메뉴 선택";
+  })();
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${mobileOpen ? "sidebar--mobile-open" : ""}`}>
+      <button
+        type="button"
+        className="sidebar__mobile-trigger"
+        onClick={() => setMobileOpen((v) => !v)}
+        aria-expanded={mobileOpen}
+      >
+        <span>{currentLabel}</span>
+        <ChevronDown size={18} strokeWidth={2} aria-hidden="true" />
+      </button>
       <div id="leftside-navigation" className="nano">
-        <ul className="nano-content">
+        <ul className="nano-content" onClick={() => setMobileOpen(false)}>
           {categories.map((cat) => {
             const hasChildren = cat.children.length > 0;
             const isOpen = openSlug === cat.slug;
 
-            // Flat entry — no expandable children: direct link to the item
             if (!hasChildren) {
               const active = cat.slug === currentSlug;
               return (
@@ -51,9 +70,6 @@ export default function ItemsSidebar({
               );
             }
 
-            // Expandable parent — never marked `.active`. Selection is
-            // represented by the highlighted child; the parent only carries
-            // the `.is-open` state for expand/collapse.
             return (
               <li
                 key={cat.slug}
@@ -63,6 +79,7 @@ export default function ItemsSidebar({
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     toggle(cat.slug);
                   }}
                 >

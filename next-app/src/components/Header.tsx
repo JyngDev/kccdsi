@@ -103,6 +103,15 @@ export default function Header() {
           ))}
         </div>
       </div>
+      {isMobile && offCanvasOpen && (
+        <div
+          className="nav-dim"
+          onClick={() => {
+            setOffCanvasOpen(false);
+            setOpenMenu(null);
+          }}
+        />
+      )}
       <div className="header_area">
         <div className="main_header_area animated">
           <div className="container">
@@ -161,10 +170,36 @@ export default function Header() {
                             <span className="submenu-indicator-chevron" />
                           </span>
                         </Link>
+                        {isMobile && openMenu === idx && (
+                          <ul className="mobile-submenu">
+                            {menu.items.map((item) => (
+                              <li key={item.href}>
+                                <Link
+                                  href={item.href}
+                                  onClick={() => {
+                                    setOpenMenu(null);
+                                    setOffCanvasOpen(false);
+                                  }}
+                                >
+                                  <img src={item.icon} alt="" />
+                                  <span>{item.label}</span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     ))}
                     <li>
-                      <Link href="/location">위치 안내</Link>
+                      <Link
+                        href="/location"
+                        onClick={() => {
+                          setOpenMenu(null);
+                          setOffCanvasOpen(false);
+                        }}
+                      >
+                        위치 안내
+                      </Link>
                     </li>
                   </ul>
                   <div className="nav-cta">

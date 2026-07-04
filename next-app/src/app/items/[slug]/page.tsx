@@ -9,6 +9,7 @@ import {
   items,
 } from "@/data/items";
 import ItemsSidebar from "@/components/ItemsSidebar";
+import MobileImageLightbox from "@/components/MobileImageLightbox";
 
 export function generateStaticParams() {
   return Object.keys(items).map((slug) => ({ slug }));
@@ -183,6 +184,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
+            <MobileImageLightbox />
     </section>
   );
 }
