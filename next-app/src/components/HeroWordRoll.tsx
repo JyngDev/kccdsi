@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const words = [
   { text: "그라스울", color: "#f6b23a" },
@@ -9,29 +9,44 @@ const words = [
   { text: "세라크울", color: "#e85a2e" },
 ];
 
-// duplicate the first word at the end so the slot can roll from the last
-// word back to the first without a visible jump, then snap silently.
+// duplicate the first word at the end so we can roll past the last one
+// back to the first, then silently snap.
 const items = [...words, words[0]];
+
+const STEP_MS = 2200;
+const TRANSITION_MS = 550;
 
 export default function HeroWordRoll() {
   const [index, setIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
+  const snapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const id = setInterval(() => {
+    const tick = setInterval(() => {
       setAnimate(true);
-      setIndex((v) => v + 1);
-    }, 2200);
-    return () => clearInterval(id);
+      setIndex((prev) => {
+        const next = prev + 1;
+        // if we're about to show the duplicate-first, schedule a snap-back
+        // to real index 0 after the animation completes.
+        if (next === words.length) {
+          if (snapTimerRef.current) clearTimeout(snapTimerRef.current);
+          snapTimerRef.current = setTimeout(() => {
+            setAnimate(false);
+            setIndex(0);
+            // re-enable the transition on the next frame so future ticks animate
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => setAnimate(true));
+            });
+          }, TRANSITION_MS + 20);
+        }
+        return next;
+      });
+    }, STEP_MS);
+    return () => {
+      clearInterval(tick);
+      if (snapTimerRef.current) clearTimeout(snapTimerRef.current);
+    };
   }, []);
-
-  const onTransitionEnd = () => {
-    if (index === words.length) {
-      // silently reset to first without animation
-      setAnimate(false);
-      setIndex(0);
-    }
-  };
 
   return (
     <span className="home-v2__word-roll" aria-live="polite">
@@ -40,10 +55,9 @@ export default function HeroWordRoll() {
         style={{
           transform: `translateY(-${index * 1.15}em)`,
           transition: animate
-            ? "transform 0.55s cubic-bezier(0.7, 0, 0.3, 1)"
+            ? `transform ${TRANSITION_MS}ms cubic-bezier(0.7, 0, 0.3, 1)`
             : "none",
         }}
-        onTransitionEnd={onTransitionEnd}
       >
         {items.map((w, i) => (
           <span

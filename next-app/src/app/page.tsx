@@ -156,7 +156,7 @@ export default function HomePage() {
           <h1 className="home-v2__h1">
             <HeroWordRoll />
             <br />
-            <span className="home-v2__h1-accent">보온단열의 표준.</span>
+            <span className="home-v2__h1-accent">KCC 안산, 대성단열.</span>
           </h1>
           <p className="home-v2__lead">
             검증된 품질과 신속한 공급으로 현장을 함께합니다.
@@ -251,7 +251,7 @@ export default function HomePage() {
         <div className="home-v2__container">
           <div className="home-v2__section-head">
             <h2 className="home-v2__h2">
-              신속함, 정확함, 그리고 합리성.
+              현장을 아는 대성단열의 세 가지 약속.
             </h2>
           </div>
           <div className="home-v2__pillar-grid">
@@ -290,9 +290,8 @@ export default function HomePage() {
               <div className="home-v2__contact-item">
                 <Phone size={18} strokeWidth={2} />
                 <a href={contactInfo.phoneRaw}>{contactInfo.phone}</a>
-                <span className="home-v2__contact-sub">
-                  · 팩스 {contactInfo.fax}
-                </span>
+                <span aria-hidden="true"> · </span>
+                <span>팩스 {contactInfo.fax}</span>
               </div>
               <div className="home-v2__contact-item">
                 <Mail size={18} strokeWidth={2} />
@@ -310,10 +309,6 @@ export default function HomePage() {
                 <Phone size={16} strokeWidth={2} />
                 지금 전화하기
               </a>
-              <Link href="/location" className="home-v2__btn home-v2__btn--ghost">
-                오시는 길
-                <ArrowRight size={16} strokeWidth={2} />
-              </Link>
             </div>
           </div>
           <div className="home-v2__contact-map">

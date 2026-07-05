@@ -330,7 +330,7 @@ button {
   margin: 0 0 20px 0;
   letter-spacing: -0.03em !important;
 }
-.home-v2__h1-accent { color: var(--hv2-muted); }
+.home-v2__h1-accent { color: var(--hv2-ink-strong); }
 .home-v2__h2 {
   font-size: clamp(30px, 3.6vw, 48px);
   font-weight: 700;
@@ -921,9 +921,10 @@ button {
   letter-spacing: -0.01em !important;
 }
 .home-v2__quote-role {
-  font-size: 14px;
-  color: var(--hv2-muted);
-  letter-spacing: -0.005em !important;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--hv2-ink);
+  letter-spacing: -0.01em !important;
   margin-left: 8px;
 }
 
@@ -2655,6 +2656,9 @@ header.megamenu-open {
   max-width: 640px;
   margin-top: 8px;
 }
+.location-v2__hero .home-v2__h1 {
+  font-size: 48px !important;
+}
 .location-v2__main {
   padding: 0 0 var(--hv2-section-y);
   background: #ffffff;
@@ -2681,6 +2685,27 @@ header.megamenu-open {
 .home-v2__contact-map #map {
   height: 100% !important;
   margin: 0 !important;
+}
+/* infowindow tweaks: smaller heading, tighter gap */
+#map h3 {
+  font-size: 18px !important;
+  margin-bottom: 8px !important;
+}
+.iw_inner {
+  padding: 16px !important;
+}
+/* Remove the inline height Naver's InfoWindow wrapper hardcodes so the
+   box shrinks to fit our slimmer content. */
+#map div:has(> .iw_inner) {
+  height: auto !important;
+  width: 360px !important;
+}
+/* Center the pointer/tail arrows to the resized box (originally sized
+   for a 442px wide box). Both the dark outer arrow and the white inner
+   arrow use fixed inline `left` values — override to 50% and slide. */
+#map div:has(> .iw_inner) > div[style*="border-width: 24px 10px 0px"] {
+  left: 178px !important;
+  transform: none !important;
 }
 .location-v2__info {
   padding: 8px 0;

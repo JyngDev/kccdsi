@@ -1,12 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Clock,
-  Mail,
-  MapPin,
-  Phone,
-  Printer,
-} from "react-feather";
+import { Clock, Mail, MapPin, Phone, Printer } from "react-feather";
 import NaverMap from "@/components/NaverMap";
 import { contactInfo } from "@/data/nav";
 
@@ -21,7 +14,6 @@ export default function LocationPage() {
       {/* HERO */}
       <section className="location-v2__hero">
         <div className="home-v2__container">
-          <p className="home-v2__eyebrow">Location</p>
           <h1 className="home-v2__h1">
             찾아오시는 길
             <span className="home-v2__h1-accent">.</span>
@@ -40,7 +32,6 @@ export default function LocationPage() {
           </div>
 
           <div className="location-v2__info">
-            <h2 className="home-v2__h2">연락처 & 영업 시간</h2>
             <div className="home-v2__contact-list">
               <div className="home-v2__contact-item">
                 <MapPin size={18} strokeWidth={2} />
@@ -76,10 +67,6 @@ export default function LocationPage() {
                 <Phone size={16} strokeWidth={2} />
                 지금 전화하기
               </a>
-              <Link href="/" className="home-v2__btn home-v2__btn--ghost">
-                홈으로
-                <ArrowRight size={16} strokeWidth={2} />
-              </Link>
             </div>
           </div>
         </div>
