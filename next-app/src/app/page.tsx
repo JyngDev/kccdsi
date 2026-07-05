@@ -11,6 +11,7 @@ import Link from "next/link";
 import { ArrowRight, Phone, MapPin, Mail, Clock } from "react-feather";
 import NaverMap from "@/components/NaverMap";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
+import HeroWordRoll from "@/components/HeroWordRoll";
 import { contactInfo } from "@/data/nav";
 
 const products = [
@@ -153,7 +154,7 @@ export default function HomePage() {
       <section className="home-v2__hero">
         <div className="home-v2__container home-v2__hero-copy">
           <h1 className="home-v2__h1">
-            산업 현장을 지키는
+            <HeroWordRoll />
             <br />
             <span className="home-v2__h1-accent">보온단열의 표준.</span>
           </h1>
@@ -163,12 +164,7 @@ export default function HomePage() {
           <div className="home-v2__cta-row">
             <Link href="/items/ds-m" className="home-v2__btn home-v2__btn--primary">
               제품 살펴보기
-              <ArrowRight size={16} strokeWidth={2.2} />
             </Link>
-            <a href={contactInfo.phoneRaw} className="home-v2__btn home-v2__btn--link">
-              문의하기
-              <ArrowRight size={14} strokeWidth={2.2} />
-            </a>
           </div>
         </div>
         <div className="home-v2__hero-image">
@@ -199,10 +195,6 @@ export default function HomePage() {
             <h2 className="home-v2__h2">
               모든 현장을 위한 전문 라인업.
             </h2>
-            <Link href="/items/ds-m" className="home-v2__section-cta">
-              전체 보기
-              <ArrowRight size={14} strokeWidth={2.2} />
-            </Link>
           </div>
           <div className="home-v2__product-grid">
             {products.map((p) => (
@@ -220,6 +212,12 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="home-v2__products-cta">
+            <Link href="/items/ds-m" className="home-v2__btn home-v2__btn--primary">
+              전체 보기
+              <ArrowRight size={16} strokeWidth={2.2} />
+            </Link>
           </div>
         </div>
       </section>
@@ -319,7 +317,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="home-v2__contact-map">
-            <NaverMap />
+            <NaverMap height="100%" />
           </div>
         </div>
       </section>

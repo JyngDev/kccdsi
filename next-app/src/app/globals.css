@@ -325,7 +325,7 @@ button {
 .home-v2__h1 {
   font-size: clamp(44px, 6.4vw, 88px);
   font-weight: 700;
-  line-height: 1.04;
+  line-height: 1.2;
   color: var(--hv2-ink);
   margin: 0 0 20px 0;
   letter-spacing: -0.03em !important;
@@ -334,7 +334,7 @@ button {
 .home-v2__h2 {
   font-size: clamp(30px, 3.6vw, 48px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.4;
   color: var(--hv2-ink);
   margin: 0;
   letter-spacing: -0.025em !important;
@@ -399,7 +399,7 @@ button {
   background: var(--hv2-link);
   color: #ffffff;
   padding: 11px 22px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 999px;
   border: none;
 }
@@ -436,7 +436,7 @@ button {
 }
 .home-v2__hero-image {
   width: calc(100% - 48px);
-  max-width: 960px;
+  max-width: 800px;
   margin: 0 auto;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -456,21 +456,26 @@ button {
   padding: 56px 0 0;
 }
 .home-v2__hero-metrics-inner {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 40px 48px !important;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  justify-content: center;
+  padding: 32px 40px !important;
   gap: 0;
   background: #ffffff;
   border: 1px solid var(--hv2-border-soft);
   border-radius: 20px;
-  max-width: 1160px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  width: fit-content;
+  max-width: 100%;
 }
 .home-v2__hero-metrics-inner > div {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 0 24px;
+  padding: 0 40px;
   text-align: center;
   align-items: center;
   border-left: 1px solid var(--hv2-border-soft);
@@ -497,7 +502,7 @@ button {
 }
 
 /* ---------- PRODUCTS — strict 3x2 grid ---------- */
-.home-v2__products { padding: var(--hv2-section-y) 0; background: #e6eaef; }
+.home-v2__products { padding: var(--hv2-section-y) 0; background: #eaecf0; }
 .home-v2__product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -793,7 +798,8 @@ button {
 .home-v2__pillar {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 24px;
+  column-gap: 20px;
+  row-gap: 8px;
   padding: 24px 28px;
   background: transparent;
   border: 1px solid var(--hv2-border);
@@ -817,14 +823,14 @@ button {
   font-weight: 600 !important;
   color: var(--hv2-muted-2) !important;
   margin: 0 !important;
-  padding-right: 20px;
-  border-right: 1px solid var(--hv2-border);
+  padding-right: 0;
+  border-right: none;
   line-height: 1;
-  min-width: 44px;
+  min-width: 0;
 }
 .home-v2__pillar-title {
   text-align: left !important;
-  margin: 0 0 4px !important;
+  margin: 0 !important;
 }
 .home-v2__pillar-desc {
   text-align: left !important;
@@ -904,20 +910,21 @@ button {
 }
 .home-v2__quote-meta {
   display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0;
 }
 .home-v2__quote-author {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--hv2-ink);
   letter-spacing: -0.01em !important;
 }
 .home-v2__quote-role {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--hv2-muted);
   letter-spacing: -0.005em !important;
+  margin-left: 8px;
 }
 
 /* arrows */
@@ -2636,5 +2643,98 @@ header.megamenu-open {
 @media (max-width: 991px) {
   .vertical_tab_content img {
     cursor: zoom-in;
+  }
+}
+
+/* ============ location page (home-v2 style) ============ */
+.location-v2__hero {
+  padding: 128px 0 72px;
+  background: #ffffff;
+}
+.location-v2__hero .home-v2__lead {
+  max-width: 640px;
+  margin-top: 8px;
+}
+.location-v2__main {
+  padding: 0 0 var(--hv2-section-y);
+  background: #ffffff;
+}
+.location-v2__main-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.location-v2__map {
+  height: 560px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--hv2-border-soft);
+  position: relative;
+}
+.location-v2__map > *,
+.location-v2__map #map {
+  height: 100% !important;
+  margin: 0 !important;
+}
+/* also fix the home v2 map wrapper against the legacy #map override */
+.home-v2__contact-map #map {
+  height: 100% !important;
+  margin: 0 !important;
+}
+.location-v2__info {
+  padding: 8px 0;
+}
+.location-v2__info .home-v2__contact-list {
+  margin: 24px 0 32px;
+}
+
+@media (max-width: 960px) {
+  .location-v2__hero { padding: 96px 0 48px; }
+  .location-v2__main-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .location-v2__map { height: 380px; border-radius: 14px; }
+}
+@media (max-width: 600px) {
+  .location-v2__hero { padding: 72px 0 32px; }
+  .location-v2__map { height: 320px; }
+}
+
+/* products section — centered CTA under the 4×2 grid */
+.home-v2__products-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+@media (max-width: 640px) {
+  .home-v2__products-cta { margin-top: 28px; }
+}
+
+/* --- hero rolling word (slot machine) --- */
+.home-v2__word-roll {
+  display: inline-block;
+  height: 1.15em;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.15;
+}
+.home-v2__word-roll-track {
+  display: block;
+  will-change: transform;
+}
+.home-v2__word-roll-item {
+  display: block;
+  height: 1.15em;
+  line-height: 1.15;
+  white-space: nowrap;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  padding-right: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-v2__word-roll-track {
+    transition: none !important;
   }
 }

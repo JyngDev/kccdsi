@@ -1,3 +1,12 @@
+import Link from "next/link";
+import {
+  ArrowRight,
+  Clock,
+  Mail,
+  MapPin,
+  Phone,
+  Printer,
+} from "react-feather";
 import NaverMap from "@/components/NaverMap";
 import { contactInfo } from "@/data/nav";
 
@@ -8,39 +17,73 @@ export const metadata = {
 
 export default function LocationPage() {
   return (
-    <div id="layouts" className="layouts">
-      <div className="layouts__center center">
-        <div className="layouts__wrap">
-          <div className="layouts__head" data-aos="animation-scale-y">
-            <h2 className="layouts__title title">
-              대성단열
-              <br />
-              찾아오시는 길<span className="title__color">.</span>
-            </h2>
+    <div className="home-v2 location-v2">
+      {/* HERO */}
+      <section className="location-v2__hero">
+        <div className="home-v2__container">
+          <p className="home-v2__eyebrow">Location</p>
+          <h1 className="home-v2__h1">
+            찾아오시는 길
+            <span className="home-v2__h1-accent">.</span>
+          </h1>
+          <p className="home-v2__lead">
+            언제든 방문해 주세요. 자재 확인과 상담이 편하게 진행됩니다.
+          </p>
+        </div>
+      </section>
+
+      {/* MAP + INFO */}
+      <section className="location-v2__main">
+        <div className="home-v2__container location-v2__main-inner">
+          <div className="location-v2__map">
+            <NaverMap height="100%" />
           </div>
-          <div className="layouts__list">
-            <div className="layouts__item" data-aos="animation-scale-y">
-              <div className="layouts__icon">
-                <img className="layouts__pic" src="/img/layout-1.png" alt="" />
+
+          <div className="location-v2__info">
+            <h2 className="home-v2__h2">연락처 & 영업 시간</h2>
+            <div className="home-v2__contact-list">
+              <div className="home-v2__contact-item">
+                <MapPin size={18} strokeWidth={2} />
+                <span>{contactInfo.address}</span>
               </div>
-              <div className="layouts__text">{contactInfo.address}</div>
+              <div className="home-v2__contact-item">
+                <Phone size={18} strokeWidth={2} />
+                <a href={contactInfo.phoneRaw}>{contactInfo.phone}</a>
+              </div>
+              <div className="home-v2__contact-item">
+                <Printer size={18} strokeWidth={2} />
+                <span>팩스 {contactInfo.fax}</span>
+              </div>
+              <div className="home-v2__contact-item">
+                <Mail size={18} strokeWidth={2} />
+                <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+              </div>
+              <div className="home-v2__contact-item">
+                <Clock size={18} strokeWidth={2} />
+                <span>{contactInfo.weekdayHours}</span>
+              </div>
+              <div className="home-v2__contact-item">
+                <Clock size={18} strokeWidth={2} />
+                <span>{contactInfo.saturdayHours}</span>
+              </div>
             </div>
-            <div className="layouts__item" data-aos="animation-scale-y">
-              <div className="layouts__icon">
-                <img className="layouts__pic" src="/img/layout-2.png" alt="" />
-              </div>
-              <div className="layouts__text">{contactInfo.phone}</div>
-            </div>
-            <div className="layouts__item" data-aos="animation-scale-y">
-              <div className="layouts__icon">
-                <img className="layouts__pic" src="/img/layout-3.png" alt="" />
-              </div>
-              <div className="layouts__text">{contactInfo.email}</div>
+
+            <div className="home-v2__cta-row">
+              <a
+                href={contactInfo.phoneRaw}
+                className="home-v2__btn home-v2__btn--primary"
+              >
+                <Phone size={16} strokeWidth={2} />
+                지금 전화하기
+              </a>
+              <Link href="/" className="home-v2__btn home-v2__btn--ghost">
+                홈으로
+                <ArrowRight size={16} strokeWidth={2} />
+              </Link>
             </div>
           </div>
         </div>
-        <NaverMap />
-      </div>
+      </section>
     </div>
   );
 }

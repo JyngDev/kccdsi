@@ -67,8 +67,8 @@ export default function TestimonialCarousel({
               <span className="home-v2__quote-mark">”</span>
             </blockquote>
             <div className="home-v2__quote-meta">
-              <div className="home-v2__quote-author">{t.author}</div>
-              <div className="home-v2__quote-role">{t.role}</div>
+              <span className="home-v2__quote-author">{t.author}</span>
+              <span className="home-v2__quote-role">{t.role}</span>
             </div>
           </div>
         ))}

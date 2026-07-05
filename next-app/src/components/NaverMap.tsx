@@ -79,8 +79,8 @@ export default function NaverMap({ height = 600, className = "" }: Props) {
     <div
       id="map"
       ref={ref}
-      className={`mt48 ${className}`}
-      style={{ width: "100%", height }}
+      className={className}
+      style={{ width: "100%", height, display: "block" }}
     />
   );
 }
