@@ -93,7 +93,7 @@ export default function Header() {
                     <li key={item.href}>
                       <Link href={item.href}>
                         <img src={item.icon} alt="" />
-                        {item.label}
+                        <span className="mm-label">{item.label}</span>
                       </Link>
                     </li>
                   ))}

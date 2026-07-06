@@ -131,7 +131,7 @@ button {
 /* base panel — override nav.css originals; hidden and out-of-flow by default */
 .megamenu-curtain .megamenu-panel {
   display: block !important;
-  padding: 24px 8% !important;
+  padding: 16px 8% !important;
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
@@ -174,8 +174,9 @@ button {
 .megamenu-curtain .megamenu-list.megamenu-grid-5 {
   display: grid !important;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px 16px;
-  padding: 20px 0 !important;
+  grid-auto-rows: 1fr;
+  gap: 8px 8px;
+  padding: 0 !important;
   margin: 0 !important;
   list-style: none;
   width: 100% !important;
@@ -673,99 +674,7 @@ button {
   margin-top: auto;
 }
 
-.home-v2__marquee {
-  overflow: hidden;
-  width: 100%;
-  /* fade both edges */
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 6%,
-    #000 94%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 6%,
-    #000 94%,
-    transparent 100%
-  );
-}
-.home-v2__marquee-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: home-v2-marquee 60s linear infinite;
-  will-change: transform;
-}
-.home-v2__marquee:hover .home-v2__marquee-track,
-.home-v2__marquee:focus-within .home-v2__marquee-track {
-  animation-play-state: paused;
-}
-@keyframes home-v2-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.home-v2__marquee-card {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 28px 28px 28px;
-  background: var(--hv2-surface);
-  border-radius: 24px;
-  text-decoration: none;
-  color: inherit;
-  transition:
-    background-color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-  width: 320px;
-  min-height: 340px;
-}
-.home-v2__marquee-card:hover {
-  background: #ececee;
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px -20px rgba(0, 0, 0, 0.14);
-}
-.home-v2__marquee-icon {
-  width: 100%;
-  height: 240px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border-radius: 0;
-}
-.home-v2__marquee-icon img {
-  width: 100%;
-  height: 100%;
-  max-width: 240px;
-  max-height: 240px;
-  object-fit: contain;
-}
-.home-v2__marquee-label {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--hv2-ink);
-  letter-spacing: -0.015em !important;
-  line-height: 1.25;
-  margin-top: auto;
-  text-align: center;
-  width: 100%;
-}
-.home-v2__marquee-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
 
-/* Respect reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .home-v2__marquee-track { animation: none; }
-}
 
 /* ---------- PILLARS — outer boxed container ---------- */
 .home-v2__pillars-section {
@@ -982,8 +891,8 @@ button {
   width: 24px;
 }
 
-@media (max-width: 600px) {
-  .home-v2__quote-carousel { padding: 0; }
+@media (max-width: 640px) {
+  .home-v2__quote-carousel { padding: 0 24px; }
   .home-v2__quote-arrow--prev,
   .home-v2__quote-arrow--next {
     display: none !important;
@@ -1026,18 +935,18 @@ button {
 .home-v2__contact-map > * { height: 100% !important; }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
   .home-v2__product-grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: none;
   }
 }
-@media (max-width: 960px) {
+@media (max-width: 991px) {
   .home-v2 { --hv2-section-y: 96px; }
   .home-v2__container { padding: 0 20px; }
   .home-v2__hero-copy { padding-bottom: 48px; }
   .home-v2__section-head { margin-bottom: 48px; }
-  .home-v2__hero-image { border-radius: 14px; aspect-ratio: 4 / 3; }
+  .home-v2__hero-image { border-radius: 14px; aspect-ratio: 3 / 2; }
   .home-v2__hero-metrics { padding-top: 48px; }
   .home-v2__hero-metrics-inner {
     grid-template-columns: repeat(3, 1fr);
@@ -1054,10 +963,6 @@ button {
   .home-v2__hero-metrics-inner > div:last-child {
     padding-right: 0;
   }
-  .home-v2__marquee-card { padding: 22px 22px 22px; width: 260px; min-height: 280px; gap: 16px; }
-  .home-v2__marquee-icon { height: 190px; }
-  .home-v2__marquee-icon img { max-width: 190px; max-height: 190px; }
-  .home-v2__marquee-label { font-size: 16px; }
   .home-v2__pillars-section .home-v2__container {
     padding: 0 20px;
     grid-template-columns: 1fr;
@@ -1069,26 +974,15 @@ button {
   .home-v2__contact-map { height: 360px; }
   .home-v2__product-body { padding: 24px 24px 28px !important; }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .home-v2__product-grid { grid-template-columns: repeat(2, 1fr); }
-  .home-v2__marquee-card { width: 220px; min-height: 240px; padding: 18px 18px 20px; gap: 14px; }
-  .home-v2__marquee-icon { height: 160px; }
-  .home-v2__marquee-icon img { max-width: 160px; max-height: 160px; width: 100%; height: 100%; }
   .home-v2__hero-metrics-inner {
-    grid-template-columns: 1fr;
-    padding: 28px 24px !important;
-    gap: 20px;
+    padding: 20px 24px !important;
+    grid-template-columns: repeat(3, max-content);
   }
-  .home-v2__hero-metrics-inner > div {
-    padding: 0;
-    border-left: none !important;
-    border-top: 1px solid var(--hv2-border-soft);
-    padding-top: 20px;
-  }
-  .home-v2__hero-metrics-inner > div:first-child {
-    border-top: none;
-    padding-top: 0;
-  }
+  .home-v2__hero-metrics-inner > div { padding: 0 16px; }
+  .home-v2__metric-value { font-size: 24px !important; }
+  .home-v2__metric-label { font-size: 12px; }
   .home-v2__cta-row { gap: 20px; }
 }
 
@@ -1269,7 +1163,7 @@ footer.site-footer li {
 }
 
 /* mobile — stack top row */
-@media (max-width: 767px) {
+@media (max-width: 640px) {
   .site-footer {
     padding: 48px 20px 24px;
   }
@@ -1708,7 +1602,7 @@ header.megamenu-open {
   border-top: 1px solid var(--gray-200, #e5e7eb);
   background: #ffffff;
 }
-@media (max-width: 900px) {
+@media (max-width: 991px) {
   .v-t-overview-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
 @media (max-width: 480px) {
@@ -1734,7 +1628,7 @@ header.megamenu-open {
   object-fit: cover;
   display: block;
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .v-t-gallery { grid-template-columns: 1fr; }
 }
 
@@ -2306,15 +2200,16 @@ header.megamenu-open {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 14px 18px;
     background: #fff;
     border: 1px solid #e5e5e7;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: #111;
     cursor: pointer;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    min-height: 48px;
   }
   .sidebar__mobile-trigger svg {
     transition: transform 0.2s ease;
@@ -2568,7 +2463,7 @@ header.megamenu-open {
 }
 
 /* subs-grid responsive */
-@media (max-width: 960px) {
+@media (max-width: 991px) {
   .home-v2__subs-grid { grid-template-columns: repeat(3, 1fr); }
   .home-v2__sub-icon { height: 150px; }
   .home-v2__sub-icon img { max-width: 150px; max-height: 150px; }
@@ -2714,17 +2609,19 @@ header.megamenu-open {
   margin: 24px 0 32px;
 }
 
-@media (max-width: 960px) {
-  .location-v2__hero { padding: 96px 0 48px; }
+@media (max-width: 991px) {
+  .location-v2__hero { padding: 80px 0 40px; }
   .location-v2__main-inner {
     grid-template-columns: 1fr;
     gap: 32px;
   }
   .location-v2__map { height: 380px; border-radius: 14px; }
+  .location-v2__hero .home-v2__h1 { font-size: 36px !important; }
 }
-@media (max-width: 600px) {
-  .location-v2__hero { padding: 72px 0 32px; }
-  .location-v2__map { height: 320px; }
+@media (max-width: 640px) {
+  .location-v2__hero { padding: 56px 0 28px; }
+  .location-v2__map { height: 300px; }
+  .location-v2__hero .home-v2__h1 { font-size: 32px !important; }
 }
 
 /* products section — centered CTA under the 4×2 grid */
@@ -2762,4 +2659,32 @@ header.megamenu-open {
   .home-v2__word-roll-track {
     transition: none !important;
   }
+}
+
+/* --- megamenu row height normalization --- */
+/* Some subsidiary labels wrap to 2 lines (e.g. "후렉시블(AL, TP, 보온)")
+   making row 2 taller than rows 1/3 and creating unequal visual gaps.
+   Give each item a fixed layout with a reserved 2-line label area. */
+.megamenu-curtain .megamenu-list.megamenu-grid-5 > li > a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 4px;
+  padding: 12px 16px !important;
+  height: 100%;
+  text-align: center;
+}
+.megamenu-curtain .megamenu-list.megamenu-grid-5 > li > a > img {
+  padding: 0 !important;
+  width: 70% !important;
+}
+.megamenu-curtain .mm-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  line-height: 1.35;
+  min-height: 2.7em; /* reserve 2 lines so 1-line and 2-line items match */
 }
