@@ -138,7 +138,7 @@ export default function Header() {
                     offCanvasOpen ? "nav-menus-wrapper-open" : ""
                   }`}
                 >
-                  <img className="m-nav-logo" src="/img/ds-m-logo.png" alt="" />
+                  <img className="m-nav-logo" src="/img/logo-dark.png" alt="" />
                   {offCanvasOpen && (
                     <span
                       className="nav-menus-wrapper-close-button"

@@ -1730,7 +1730,7 @@ header.megamenu-open {
 
 /* image placed above a section heading */
 .v-t-section-top-img {
-  margin: 0 0 20px;
+  margin: 0;
   text-align: center;
 }
 .v-t-section-top-img img {
@@ -2219,7 +2219,7 @@ header.megamenu-open {
 /* MAIN PRODUCT IMAGE (top of page) */
 .v-t-main-img {
   text-align: center !important;
-  margin: 0 0 8px 0;
+  margin: 0;
 }
 
 /* SECTION TOP IMAGE (below section heading, when using imageBelow) */
@@ -2260,7 +2260,7 @@ header.megamenu-open {
   font-size: 18px !important;
   font-weight: 600 !important;
   color: #111;
-  margin: 0 0 8px 0 !important;
+  margin: 0 !important;
 }
 
 /* DESCRIPTION PARAGRAPH */
@@ -2288,8 +2288,9 @@ header.megamenu-open {
 /* MOBILE — scale down proportionally */
 @media (max-width: 991px) {
   .vertical_tab_content h2 { font-size: 28px !important; }
-  .v-t-content { row-gap: 40px !important; }
-  .v-t-content .section-block { gap: 10px !important; }
+  .v-t-content { gap: 40px !important; }
+  .v-t-content .section-block { gap: 12px !important; }
+  .v-t-content .sub-block { gap: 8px !important; }
   .v-t-content .ds-ex-txt-03 { font-size: 20px !important; }
   .v-t-content .ds-ex-txt-03-sub { font-size: 16px !important; }
   .v-t-content .ds-ex-txt-04 { font-size: 16px !important; line-height: 1.65 !important; }
@@ -2298,7 +2299,7 @@ header.megamenu-open {
 @media (max-width: 640px) {
   .v-t-header h2 { margin-top: 12px !important; }
   .vertical_tab_content h2 { font-size: 28px !important; margin-bottom: 16px !important; }
-  .v-t-content { gap: 28px !important; }
+  .v-t-content { gap: 40px !important; }
   .v-t-content .ds-ex-txt-03 { font-size: 18px !important; }
   .v-t-content .ds-ex-txt-03-sub { font-size: 15px !important; }
   .v-t-content .ds-ex-txt-04 { font-size: 16px !important; }
@@ -2365,10 +2366,13 @@ header.megamenu-open {
     font-size: 17px !important;
   }
   .v-t-content .section-block {
-    row-gap: 8px !important;
+    gap: 12px !important;
+  }
+  .v-t-content .sub-block {
+    gap: 8px !important;
   }
   .v-t-content {
-    row-gap: 40px !important;
+    gap: 40px !important;
   }
 
   /* sub-image at responsive size */
@@ -2396,7 +2400,7 @@ header.megamenu-open {
   }
   .v-t-overview-label {
     padding: 12px 14px !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
 
   /* gallery grid */
