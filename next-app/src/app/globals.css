@@ -2284,7 +2284,7 @@ header.megamenu-open {
   .v-t-content .ds-ex-txt-03 { font-size: 20px !important; }
   .v-t-content .ds-ex-txt-03-sub { font-size: 16px !important; }
   .v-t-content .ds-ex-txt-04 { font-size: 15px !important; line-height: 1.65 !important; }
-  .v-t-content .ds-ex-txt-01 { font-size: 16px !important; font-weight: 600 !important; padding: 10px 16px !important; }
+  .v-t-content .ds-ex-txt-01 { font-size: 18px !important; font-weight: 600 !important; padding: 10px 16px !important; }
 }
 @media (max-width: 640px) {
   .vertical_tab_content h2 { font-size: 21px !important; margin-bottom: 16px !important; }
