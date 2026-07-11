@@ -16,7 +16,7 @@ type Props = {
 
 export default function TestimonialCarousel({
   items,
-  interval = 6000,
+  interval = 5000,
 }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);

@@ -8,10 +8,11 @@
  */
 
 import Link from "next/link";
-import { ArrowRight, Phone, MapPin, Mail, Clock } from "react-feather";
+import { ArrowRight, Phone, MapPin, Mail, Clock, Plus } from "react-feather";
 import NaverMap from "@/components/NaverMap";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import HeroWordRoll from "@/components/HeroWordRoll";
+import HeroImageMagnifier from "@/components/HeroImageMagnifier";
 import { contactInfo } from "@/data/nav";
 
 const products = [
@@ -155,12 +156,19 @@ export default function HomePage() {
         <div className="home-v2__container home-v2__hero-copy">
           <h1 className="home-v2__h1">
             <HeroWordRoll />
-            <br />
-            <span className="home-v2__h1-accent">KCC 안산, 대성단열.</span>
           </h1>
-          <p className="home-v2__lead">
-            검증된 품질과 신속한 공급으로 현장을 함께합니다.
-          </p>
+          <div className="home-v2__brand-row">
+            <span className="home-v2__h1-accent">KCC & 벽산 <mark className="home-v2__hl">안산·시흥</mark> 총판매점</span>
+            <div className="home-v2__brand-pair">
+              <img
+                className="home-v2__brand-logo"
+                src="/img/vtlogokccbc.jpg?v=1783735658"
+                alt="KCC & 벽산"
+              />
+              <span className="home-v2__brand-name">대성단열</span>
+            </div>
+          </div>
+          <p className="home-v2__lead">산업현장을 지키는 보온단열의 표준</p>
           <div className="home-v2__cta-row">
             <Link href="/items/ds-m" className="home-v2__btn home-v2__btn--primary">
               제품 살펴보기
@@ -168,7 +176,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="home-v2__hero-image">
-          <img src="/img/vt-gr.jpg" alt="대성단열 대표 제품" />
+          <HeroImageMagnifier src="/img/vt-gr.jpg" alt="대성단열 대표 제품" />
         </div>
         <div className="home-v2__hero-metrics">
           <div className="home-v2__container home-v2__hero-metrics-inner">
@@ -177,11 +185,11 @@ export default function HomePage() {
               <div className="home-v2__metric-label">년 업력</div>
             </div>
             <div>
-              <div className="home-v2__metric-value">100+</div>
+              <div className="home-v2__metric-value">1,000+</div>
               <div className="home-v2__metric-label">취급 품목</div>
             </div>
             <div>
-              <div className="home-v2__metric-value">1,000+</div>
+              <div className="home-v2__metric-value">10,000+</div>
               <div className="home-v2__metric-label">시공 현장</div>
             </div>
           </div>
@@ -216,7 +224,7 @@ export default function HomePage() {
           <div className="home-v2__products-cta">
             <Link href="/items/ds-m" className="home-v2__btn home-v2__btn--primary">
               전체 보기
-              <ArrowRight size={16} strokeWidth={2.2} />
+              <Plus size={16} strokeWidth={2.2} />
             </Link>
           </div>
         </div>
@@ -278,9 +286,9 @@ export default function HomePage() {
         <div className="home-v2__container home-v2__contact-inner">
           <div className="home-v2__contact-copy">
             <h2 className="home-v2__h2">
-              필요한 순간,
+              자재확인, 맞춤상담
               <br />
-              바로 연락 주세요.
+              빠른 출고를 약속합니다.
             </h2>
             <div className="home-v2__contact-list">
               <div className="home-v2__contact-item">
@@ -289,13 +297,27 @@ export default function HomePage() {
               </div>
               <div className="home-v2__contact-item">
                 <Phone size={18} strokeWidth={2} />
-                <a href={contactInfo.phoneRaw}>{contactInfo.phone}</a>
+                <a
+                  href={contactInfo.phoneRaw}
+                  className="has-tooltip"
+                  data-tooltip="연락처로 문의하기"
+                  aria-label="연락처로 문의하기"
+                >
+                  {contactInfo.phone}
+                </a>
                 <span aria-hidden="true"> · </span>
                 <span>팩스 {contactInfo.fax}</span>
               </div>
               <div className="home-v2__contact-item">
                 <Mail size={18} strokeWidth={2} />
-                <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="has-tooltip"
+                  data-tooltip="이메일 보내기"
+                  aria-label="이메일 보내기"
+                >
+                  {contactInfo.email}
+                </a>
               </div>
               <div className="home-v2__contact-item">
                 <Clock size={18} strokeWidth={2} />

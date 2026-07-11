@@ -328,10 +328,18 @@ button {
   font-weight: 700;
   line-height: 1.2;
   color: var(--hv2-ink);
-  margin: 0 0 20px 0;
+  margin: 0 0 8px 0;
   letter-spacing: -0.03em !important;
 }
 .home-v2__h1-accent { color: var(--hv2-ink-strong); }
+.home-v2__hero .home-v2__h1-accent { font-size: 48px; font-weight: 700; }
+.home-v2__hero .home-v2__hl { font-size: 48px; }
+.home-v2__hl {
+  background: linear-gradient(180deg, transparent calc(100% - 16px), #ffe066 calc(100% - 16px));
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 0;
+}
 .home-v2__h2 {
   font-size: clamp(30px, 3.6vw, 48px);
   font-weight: 700;
@@ -449,6 +457,40 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.hero-magnifier {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hero-magnifier > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero-magnifier:hover {
+    cursor: none;
+  }
+}
+.hero-magnifier__lens {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 0 4px rgba(17, 17, 17, 0.15),
+    0 12px 32px rgba(0, 0, 0, 0.28);
+  transition: opacity 0.15s ease;
+  will-change: left, top, background-position;
+}
+@media (hover: none), (pointer: coarse) {
+  .hero-magnifier__lens {
+    display: none;
+  }
 }
 
 /* metrics — one bordered box wrapping all 4 (sits within hero) */
@@ -1024,8 +1066,8 @@ footer.site-footer li {
 }
 .site-footer__top {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) 2fr;
-  gap: 64px;
+  grid-template-columns: minmax(360px, 1.2fr) 2fr;
+  gap: 48px;
   padding-bottom: 48px;
   border-bottom: 1px solid var(--gray-200);
 }
@@ -1058,6 +1100,76 @@ footer.site-footer li {
 .site-footer__contact-hours {
   font-size: 13px;
   color: var(--gray-500) !important;
+}
+.site-footer__contact-line {
+  font-size: 13px;
+  color: var(--gray-500) !important;
+  margin-top: 2px;
+  white-space: nowrap !important;
+  text-wrap: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+.site-footer__contact-line a {
+  display: inline;
+  padding-left: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+footer.site-footer .site-footer__contact-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000 !important;
+}
+footer.site-footer .site-footer__contact-line a:hover,
+footer.site-footer .site-footer__contact-line a:focus-visible {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  cursor: pointer;
+}
+.has-tooltip {
+  position: relative;
+}
+.has-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 6px 10px;
+  background: #111;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+.has-tooltip::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2px);
+  transform: translateX(-50%) translateY(4px);
+  border: 4px solid transparent;
+  border-top-color: #111;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+.has-tooltip:hover::after,
+.has-tooltip:focus-visible::after,
+.has-tooltip:hover::before,
+.has-tooltip:focus-visible::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 .site-footer__nav {
   display: grid;
@@ -1214,24 +1326,27 @@ footer.site-footer li {
 /* items sidebar submenu — main.css declares `ul ul { display: none }` AFTER
    `li.active ul { display: block }`, so display:none always wins on cascade.
    Use max-height for a smooth fold/unfold animation (display can't animate). */
+/* collapse — grid unfold + short fade-in on expand */
+.sidebar #leftside-navigation ul li.sub-menu {
+  display: grid !important;
+  grid-template-rows: auto 0fr;
+  transition: grid-template-rows 0.18s ease-out;
+}
+.sidebar #leftside-navigation ul li.sub-menu.active,
+.sidebar #leftside-navigation ul li.sub-menu.is-open {
+  grid-template-rows: auto 1fr;
+}
 .sidebar #leftside-navigation ul li.sub-menu > ul {
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
   overflow: hidden;
-  max-height: 0;
+  min-height: 0;
   opacity: 0;
-  transform: translateY(-4px);
-  transition:
-    max-height 0.28s ease,
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  pointer-events: none;
+  transition: opacity 0.14s ease-out;
 }
 .sidebar #leftside-navigation ul li.sub-menu.active > ul,
 .sidebar #leftside-navigation ul li.sub-menu.is-open > ul {
-  max-height: 800px;
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 .sidebar #leftside-navigation ul li.sub-menu > a {
   cursor: pointer;
@@ -1272,10 +1387,11 @@ footer.site-footer li {
 }
 /* sidebar width — override main.css 320px */
 .sidebar {
-  width: 296px !important;
+  width: 280px !important;
 }
 .vertical_tab_content {
-  width: calc(100% - 296px) !important;
+  width: calc(100% - 280px) !important;
+  padding-left: 80px !important;
 }
 .vertical_tab_content h2 {
   margin-bottom: 20px !important;
@@ -1345,12 +1461,12 @@ footer.site-footer li {
 .nav-menu > li:hover > a,
 .nav-menu > li.focus > a,
 .nav-menu > li.active > a {
-  color: var(--primary) !important;
+  color: #0071e3 !important;
 }
 .nav-menu > li:hover > a .submenu-indicator-chevron,
 .nav-menu > li.focus > a .submenu-indicator-chevron,
 .nav-menu > li.active > a .submenu-indicator-chevron {
-  border-color: transparent var(--primary) var(--primary) transparent !important;
+  border-color: transparent #0071e3 #0071e3 transparent !important;
 }
 
 /* GNB glassmorphism — applied to the outermost <header> so backdrop-filter
@@ -1462,9 +1578,9 @@ header.megamenu-open {
   height: 40px !important;
   padding: 0 18px !important;
   border-radius: 999px !important;
-  background: var(--primary) !important;
-  border: 1px solid var(--primary) !important;
-  color: #fff !important;
+  background: transparent !important;
+  border: 1px solid rgba(0, 0, 0, 0.7) !important;
+  color: #000 !important;
   font-size: 16px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
@@ -1472,14 +1588,17 @@ header.megamenu-open {
   transition:
     background-color 0.15s ease,
     color 0.15s ease,
-    border-color 0.15s ease,
-    filter 0.15s ease;
+    border-color 0.15s ease;
 }
 .navigation-landscape .nav-cta button:hover {
-  filter: brightness(1.1);
+  background: #000 !important;
+  color: #fff !important;
+}
+.navigation-landscape .nav-cta button:hover span {
+  color: #fff !important;
 }
 .navigation-landscape .nav-cta button span {
-  color: #fff !important;
+  color: #000 !important;
   font-size: 16px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
@@ -1557,7 +1676,6 @@ header.megamenu-open {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 24px;
 }
 .v-t-overview-card {
   display: flex;
@@ -1778,12 +1896,11 @@ header.megamenu-open {
 /* outer container — subtle card with softer border and refined padding */
 .sidebar #leftside-navigation ul.nano-content,
 .sidebar #leftside-navigation > ul {
-  padding: 12px !important;
-  border: 1px solid var(--gray-200, #e5e7eb) !important;
+  padding: 0 !important;
+  border: none !important;
   border-radius: 14px !important;
   background: #ffffff !important;
   gap: 8px !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 /* parent (sub-menu > a) — polished hover + subtle active tint */
@@ -1847,17 +1964,17 @@ header.megamenu-open {
 .sidebar #leftside-navigation ul > li.sub-menu--flat.active {
   background: transparent !important;
 }
-/* flat active — bg + darker text (weight stays at base) */
+/* flat active — blue bg + white text */
 .sidebar #leftside-navigation ul > li.sub-menu--flat.active > a,
 .sidebar #leftside-navigation ul > li.sub-menu--flat.active > a:hover,
 .sidebar #leftside-navigation ul > li.sub-menu--flat.active > a:focus,
 .sidebar #leftside-navigation ul > li.sub-menu--flat.active > a:active {
-  background: var(--gray-100, #f3f4f6) !important;
-  color: #111 !important;
+  background: #0071e3 !important;
+  color: #fff !important;
 }
 .sidebar #leftside-navigation ul > li.sub-menu--flat.active > a > span {
   background: transparent !important;
-  color: #111 !important;
+  color: #fff !important;
 }
 
 /* chevron — smaller, subtle (unified color across down/right) */
@@ -1872,28 +1989,20 @@ header.megamenu-open {
   transition: transform 0.22s ease, color 0.18s ease !important;
 }
 .sidebar #leftside-navigation ul li.sub-menu.active > a > .dropdown.icon,
-.sidebar #leftside-navigation ul li.sub-menu.is-open > a > .dropdown.icon,
-.sidebar #leftside-navigation ul > li.sub-menu--flat.active > a > .flat-arrow {
+.sidebar #leftside-navigation ul li.sub-menu.is-open > a > .dropdown.icon {
   color: var(--gray-700, #374151) !important;
   stroke: var(--gray-700, #374151) !important;
+}
+.sidebar #leftside-navigation ul > li.sub-menu--flat.active > a > .flat-arrow {
+  color: #fff !important;
+  stroke: #fff !important;
 }
 
 /* expandable children container — inset, no bg overrides */
 .sidebar #leftside-navigation ul li.sub-menu > ul {
-  padding: 0 !important;
+  padding: 0 0 0 16px !important;
   margin: 0 !important;
   gap: 4px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  transition:
-    max-height 0.28s ease,
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    padding 0.2s ease !important;
-}
-.sidebar #leftside-navigation ul li.sub-menu.is-open > ul,
-.sidebar #leftside-navigation ul li.sub-menu.active > ul {
-  padding: 4px 0 6px 8px !important;
 }
 
 /* child item — subtle indent, cleaner hover */
@@ -1928,8 +2037,8 @@ header.megamenu-open {
 .sidebar #leftside-navigation ul li.sub-menu > ul > li.active > a:hover,
 .sidebar #leftside-navigation ul li.sub-menu > ul > li.active > a:focus,
 .sidebar #leftside-navigation ul li.sub-menu > ul > li.active > a:active {
-  background: var(--gray-100, #f3f4f6) !important;
-  color: #111 !important;
+  background: #0071e3 !important;
+  color: #fff !important;
 }
 
 /* remove Semantic UI `.icon` default width that fights the chevron sizing */
@@ -1944,10 +2053,10 @@ header.megamenu-open {
 
 /* PAGE HEADER (h2 subtitle above content) */
 .vertical_tab_content h2 {
-  font-size: 28px !important;
-  font-weight: 700 !important;
+  font-size: 36px !important;
+  font-weight: 600 !important;
   line-height: 1.25 !important;
-  margin: 0 0 20px 0 !important;
+  margin: 0 0 36px 0 !important;
   color: #111;
   letter-spacing: 0 !important;
 }
@@ -2094,6 +2203,11 @@ header.megamenu-open {
    MOBILE RESPONSIVE — global overrides for ≤ 991px (tablet)
    and ≤ 640px (phone)
    ============================================================ */
+
+/* item detail desktop — top padding override */
+.i-wrap-01 {
+  padding-top: 96px !important;
+}
 
 /* ---------- ≤ 991px (tablet + phone) ---------- */
 @media (max-width: 991px) {
@@ -2687,4 +2801,39 @@ header.megamenu-open {
   width: 100%;
   line-height: 1.35;
   min-height: 2.7em; /* reserve 2 lines so 1-line and 2-line items match */
+}
+
+/* --- hero brand strip: KCC & 벽산 logo + 대성단열 text --- */
+.home-v2__brand-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+.home-v2__brand-pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.home-v2__brand-logo {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.home-v2__brand-name {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--hv2-ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .home-v2__brand-row { gap: 12px; margin-top: 20px; }
+  .home-v2__brand-logo { height: 26px; }
+  .home-v2__brand-name { font-size: 18px; }
 }

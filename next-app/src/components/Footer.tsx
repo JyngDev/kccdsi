@@ -19,11 +19,33 @@ export default function Footer() {
               <img src="/img/logo-dark.png" alt="대성단열" />
             </Link>
             <div className="site-footer__contact">
-              <div className="site-footer__contact-phone">
-                고객센터 <strong>{contactInfo.phone}</strong>
+              <div className="site-footer__contact-line">
+                고객 센터{" "}
+                <a
+                  className="site-footer__contact-value has-tooltip"
+                  href={contactInfo.phoneRaw}
+                  data-tooltip="연락처로 문의하기"
+                  aria-label="연락처로 문의하기"
+                >
+                  {contactInfo.phone}
+                </a>
               </div>
-              <div className="site-footer__contact-hours">
-                평일 09:00~18:00 · 토요일 08:00~12:00 · 일요일 휴무
+              <div className="site-footer__contact-line">
+                팩스 <span className="site-footer__contact-value">{contactInfo.fax}</span>
+              </div>
+              <div className="site-footer__contact-line">
+                이메일{" "}
+                <a
+                  className="site-footer__contact-value has-tooltip"
+                  href={`mailto:${contactInfo.email}`}
+                  data-tooltip="이메일 보내기"
+                  aria-label="이메일 보내기"
+                >
+                  {contactInfo.email}
+                </a>
+              </div>
+              <div className="site-footer__contact-line">
+                영업시간 평일 08:00~18:00 · 토 08:00~12:00 · 일 휴무
               </div>
             </div>
           </div>

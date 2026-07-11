@@ -19,7 +19,7 @@ export default function LocationPage() {
             <span className="home-v2__h1-accent">.</span>
           </h1>
           <p className="home-v2__lead">
-            언제든 방문해 주세요. 자재 확인과 상담이 편하게 진행됩니다.
+            자재 확인부터 현장 맞춤 상담, 그리고 신속한 출고를 약속드립니다.
           </p>
         </div>
       </section>
@@ -39,7 +39,14 @@ export default function LocationPage() {
               </div>
               <div className="home-v2__contact-item">
                 <Phone size={18} strokeWidth={2} />
-                <a href={contactInfo.phoneRaw}>{contactInfo.phone}</a>
+                <a
+                  href={contactInfo.phoneRaw}
+                  className="has-tooltip"
+                  data-tooltip="연락처로 문의하기"
+                  aria-label="연락처로 문의하기"
+                >
+                  {contactInfo.phone}
+                </a>
               </div>
               <div className="home-v2__contact-item">
                 <Printer size={18} strokeWidth={2} />
@@ -47,7 +54,14 @@ export default function LocationPage() {
               </div>
               <div className="home-v2__contact-item">
                 <Mail size={18} strokeWidth={2} />
-                <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="has-tooltip"
+                  data-tooltip="이메일 보내기"
+                  aria-label="이메일 보내기"
+                >
+                  {contactInfo.email}
+                </a>
               </div>
               <div className="home-v2__contact-item">
                 <Clock size={18} strokeWidth={2} />
