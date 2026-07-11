@@ -2278,20 +2278,21 @@ header.megamenu-open {
 
 /* MOBILE — scale down proportionally */
 @media (max-width: 991px) {
-  .vertical_tab_content h2 { font-size: 24px !important; }
+  .vertical_tab_content h2 { font-size: 28px !important; }
   .v-t-content { gap: 32px !important; }
   .v-t-content .section-block { gap: 10px !important; }
   .v-t-content .ds-ex-txt-03 { font-size: 20px !important; }
   .v-t-content .ds-ex-txt-03-sub { font-size: 16px !important; }
-  .v-t-content .ds-ex-txt-04 { font-size: 15px !important; line-height: 1.65 !important; }
+  .v-t-content .ds-ex-txt-04 { font-size: 16px !important; line-height: 1.65 !important; }
   .v-t-content .ds-ex-txt-01 { font-size: 18px !important; font-weight: 600 !important; padding: 10px 16px !important; }
 }
 @media (max-width: 640px) {
-  .vertical_tab_content h2 { font-size: 21px !important; margin-bottom: 16px !important; }
+  .v-t-header h2 { margin-top: 12px !important; }
+  .vertical_tab_content h2 { font-size: 28px !important; margin-bottom: 16px !important; }
   .v-t-content { gap: 28px !important; }
   .v-t-content .ds-ex-txt-03 { font-size: 18px !important; }
   .v-t-content .ds-ex-txt-03-sub { font-size: 15px !important; }
-  .v-t-content .ds-ex-txt-04 { font-size: 14px !important; }
+  .v-t-content .ds-ex-txt-04 { font-size: 16px !important; }
 }
 
 /* ============================================================
@@ -2322,6 +2323,11 @@ header.megamenu-open {
     width: 100% !important;
     margin-bottom: 24px;
   }
+  /* on mobile the aside only hosts the fixed tabbar — collapse its layout
+     so it doesn't reserve any block space of its own */
+  .items .sidebar:has(.items-tabbar) {
+    display: contents !important;
+  }
   .vertical_tab_content {
     width: 100% !important;
     padding-left: 0 !important;
@@ -2343,14 +2349,14 @@ header.megamenu-open {
     font-size: 20px !important;
   }
   .v-t-content .ds-ex-txt-04 {
-    font-size: 15px !important;
+    font-size: 16px !important;
     line-height: 1.65 !important;
   }
   .v-t-content .ds-ex-txt-03-sub {
     font-size: 17px !important;
   }
   .v-t-content .section-block {
-    gap: 12px !important;
+    row-gap: 8px !important;
   }
   .v-t-content {
     gap: 32px !important;
@@ -2392,7 +2398,7 @@ header.megamenu-open {
 
   /* intro callout */
   .v-t-content .ds-ex-txt-01 {
-    font-size: 14px !important;
+    font-size: 18px !important;
     padding: 10px 16px !important;
   }
 
@@ -2454,7 +2460,7 @@ header.megamenu-open {
 
   /* item hero header */
   .vertical_tab_content h2 {
-    font-size: 20px !important;
+    font-size: 28px !important;
   }
   .v-t-content .ds-ex-txt-03 {
     font-size: 18px !important;
@@ -2821,6 +2827,92 @@ header.megamenu-open {
 
 /* mobile sidebar dropdown — hidden on desktop */
 .sidebar__mobile-trigger { display: none; }
+
+/* mobile top tabbar — 2depth children as horizontal scroll below header */
+.items-tabbar { display: none; }
+@media (max-width: 991px) {
+  .items-tabbar {
+    display: block;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    background: #ffffff;
+    border-bottom: 1px solid var(--gray-200, #e5e7eb);
+    transform: translateY(0);
+    transition: transform 0.22s ease;
+    will-change: transform;
+  }
+  .items-tabbar--hidden {
+    transform: translateY(-100%);
+  }
+  .items-tabbar__scroller {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-behavior: auto;
+    background: var(--gray-100, #f3f4f6) !important;
+  }
+  .items-tabbar__scroller::-webkit-scrollbar { display: none; }
+  .items-tabbar__scroller--top {
+    background: #ffffff !important;
+  }
+  /* only draw the 1depth-2depth divider when both are visible */
+  .items-tabbar--dual .items-tabbar__scroller--top {
+    border-bottom: 1px solid var(--gray-200, #e5e7eb);
+  }
+  .items-tabbar__list {
+    display: flex;
+    gap: 20px;
+    padding: 0 16px;
+    width: max-content;
+  }
+  .items-tabbar__item {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-500, #6b7280) !important;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    transition: color 0.15s ease;
+  }
+  /* 2depth active — color only, no underline */
+  .items-tabbar__item.is-active {
+    color: #111 !important;
+    font-weight: 600;
+  }
+  /* 1depth (parent categories) — bolder + underline indicator */
+  .items-tabbar__item--top {
+    height: 44px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-600, #4b5563) !important;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .items-tabbar__item--top.is-active {
+    color: #111 !important;
+    border-bottom-color: #111;
+  }
+  /* reserve space for the fixed tabbar — 1depth only (44) + margin */
+  .items:has(.items-tabbar) .i-wrap-01 {
+    padding-top: 60px !important;
+  }
+  /* both depths visible → include 2depth height */
+  .items:has(.items-tabbar--dual) .i-wrap-01 {
+    padding-top: 104px !important;
+  }
+  /* hide the sidebar aside entirely when there's no mobile tabbar to render
+     (no 2depth children → nothing to show on mobile) */
+  .items .sidebar:not(:has(.items-tabbar)) {
+    display: none !important;
+  }
+}
 
 /* --- mobile image lightbox --- */
 .img-lightbox {
