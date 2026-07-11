@@ -286,7 +286,7 @@ export default function HomePage() {
         <div className="home-v2__container home-v2__contact-inner">
           <div className="home-v2__contact-copy">
             <h2 className="home-v2__h2">
-              자재확인, 맞춤상담
+              자재 확인, 맞춤 상담
               <br />
               빠른 출고를 약속합니다.
             </h2>

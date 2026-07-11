@@ -939,6 +939,16 @@ button {
   .home-v2__quote-arrow--next {
     display: none !important;
   }
+  /* Lock the author/role position across slides — grid-area:1/1 already
+     makes every slide the same height (max of all); pushing meta to the
+     bottom aligns it consistently regardless of quote length. */
+  .home-v2__quote-slide {
+    display: flex;
+    flex-direction: column;
+  }
+  .home-v2__quote-slide .home-v2__quote-meta {
+    margin-top: auto;
+  }
 }
 
 /* ---------- CONTACT — refined 2-up, compact ---------- */
@@ -986,14 +996,14 @@ button {
 @media (max-width: 991px) {
   .home-v2 { --hv2-section-y: 64px; }
   .home-v2__hero { padding-top: 80px; }
-  .home-v2__container { padding: 0 20px; }
+  .home-v2__container { padding: 0 20px; margin-top: 32px; }
   .home-v2__hero-copy { padding-bottom: 48px; }
   .home-v2__section-head { margin-bottom: 32px; }
   .home-v2__hero-image { border-radius: 14px; aspect-ratio: 3 / 2; }
-  .home-v2__product-card { border-radius: 12px; }
+  .home-v2__product-card { border-radius: 8px; }
   .home-v2__product-title { font-size: 18px; }
   .home-v2__product-desc { display: none; }
-  .home-v2__sub-card { border-radius: 12px; }
+  .home-v2__sub-card { border-radius: 8px; }
   .home-v2__pillar-title { font-size: 18px; }
   .home-v2__hero-metrics { padding-top: 48px; }
   .home-v2__hero-metrics-inner {
@@ -1379,8 +1389,7 @@ footer.site-footer .site-footer__contact-line a:focus-visible {
     gap: 32px;
   }
   .site-footer__nav {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    display: none !important;
   }
   .site-footer__bottom {
     flex-direction: column;
@@ -2279,7 +2288,7 @@ header.megamenu-open {
 /* MOBILE — scale down proportionally */
 @media (max-width: 991px) {
   .vertical_tab_content h2 { font-size: 28px !important; }
-  .v-t-content { gap: 32px !important; }
+  .v-t-content { row-gap: 40px !important; }
   .v-t-content .section-block { gap: 10px !important; }
   .v-t-content .ds-ex-txt-03 { font-size: 20px !important; }
   .v-t-content .ds-ex-txt-03-sub { font-size: 16px !important; }
@@ -2359,7 +2368,7 @@ header.megamenu-open {
     row-gap: 8px !important;
   }
   .v-t-content {
-    gap: 32px !important;
+    row-gap: 40px !important;
   }
 
   /* sub-image at responsive size */
@@ -2553,8 +2562,8 @@ header.megamenu-open {
     align-items: stretch;
     gap: 4px;
     min-width: 0;
-    padding: 6px;
-    border-radius: 12px;
+    padding: 8px 8px 12px 8px;
+    border-radius: 8px;
     border: 1px solid transparent;
     text-decoration: none;
     color: #111;
@@ -2731,15 +2740,16 @@ header.megamenu-open {
   }
   .navigation-portrait .m-nav-logo {
     position: absolute !important;
-    top: 18px !important;
+    top: 28px !important;
     left: 20px !important;
     width: 120px !important;
     height: auto !important;
     margin: 0 !important;
+    transform: translateY(-50%) !important;
   }
   .navigation-portrait .nav-menus-wrapper-close-button {
     position: absolute !important;
-    top: 12px !important;
+    top: 28px !important;
     right: 12px !important;
     float: none !important;
     margin: 0 !important;
@@ -2749,6 +2759,7 @@ header.megamenu-open {
     line-height: 40px !important;
     font-size: 22px !important;
     text-align: center !important;
+    transform: translateY(-50%) !important;
   }
 
   /* --- chevron: inline within anchor (flex) instead of absolute --- */
@@ -2887,15 +2898,15 @@ header.megamenu-open {
     font-weight: 600;
   }
   /* 1depth (parent categories) — bolder + underline indicator */
-  .items-tabbar__item--top {
+  .items-tabbar__list--top .items-tabbar__item--top {
     height: 44px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--gray-600, #4b5563) !important;
+    color: var(--gray-500, #6b7280) !important;
     border-bottom: 2px solid transparent;
     transition: color 0.15s ease, border-color 0.15s ease;
   }
-  .items-tabbar__item--top.is-active {
+  .items-tabbar__list--top .items-tabbar__item--top.is-active {
     color: #111 !important;
     border-bottom-color: #111;
   }
@@ -3175,6 +3186,7 @@ header.megamenu-open {
 
 @media (max-width: 640px) {
   .home-v2__brand-row { gap: 4px; margin-top: 20px; }
+  .home-v2__brand-pair { column-gap: 8px; }
   .home-v2__brand-logo { height: 26px; }
   .home-v2__brand-name { font-size: 24px; }
 }
