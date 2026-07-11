@@ -65,11 +65,9 @@ export default function LocationPage() {
               </div>
               <div className="home-v2__contact-item">
                 <Clock size={18} strokeWidth={2} />
-                <span>{contactInfo.weekdayHours}</span>
-              </div>
-              <div className="home-v2__contact-item">
-                <Clock size={18} strokeWidth={2} />
-                <span>{contactInfo.saturdayHours}</span>
+                <span>
+                  {contactInfo.weekdayHours} · {contactInfo.saturdayHours}
+                </span>
               </div>
             </div>
 

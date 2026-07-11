@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { contactInfo, megaMenus } from "@/data/nav";
 
 export default function Header() {
   const [offCanvasOpen, setOffCanvasOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<number | null>(null);
+  const [drawerTab, setDrawerTab] = useState(0);
+  const pathname = usePathname() ?? "/";
   // sizeMenu = which panel contributes to curtain height right now.
   // Follows openMenu when opening/switching; lingers for the close transition
   // so the curtain can shrink from the last panel's height instead of snapping.
@@ -144,71 +147,87 @@ export default function Header() {
                       &#10005;
                     </span>
                   )}
+                  {isMobile && (
+                    <div className="drawer-quicknav">
+                      <div className="drawer-quicknav__tabs" role="tablist">
+                        {megaMenus.map((menu, idx) => (
+                          <button
+                            key={menu.label}
+                            type="button"
+                            role="tab"
+                            aria-selected={drawerTab === idx}
+                            className={`drawer-quicknav__tab ${
+                              drawerTab === idx ? "is-active" : ""
+                            }`}
+                            onClick={() => setDrawerTab(idx)}
+                          >
+                            {menu.label}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="drawer-quicknav__grid" role="tabpanel">
+                        {megaMenus[drawerTab].items.map((item) => {
+                          const isCurrent = pathname === item.href;
+                          return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className={`drawer-quicknav__tile ${isCurrent ? "is-current" : ""}`}
+                            aria-current={isCurrent ? "page" : undefined}
+                            onClick={() => setOffCanvasOpen(false)}
+                          >
+                            <span className="drawer-quicknav__tile-img">
+                              <img src={item.icon} alt="" />
+                            </span>
+                            <span className="drawer-quicknav__tile-label">
+                              {item.label}
+                            </span>
+                          </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                   <ul className="nav-menu nav-menu-center">
-                    {megaMenus.map((menu, idx) => (
-                      <li
-                        key={menu.label}
-                        className={openMenu === idx ? "focus" : ""}
-                        onMouseEnter={() => !isMobile && openMenuAt(idx)}
-                        onMouseLeave={() => !isMobile && scheduleClose()}
-                      >
-                        <Link
-                          href={menu.href}
-                          onClick={(e) => {
-                            // On mobile, tapping the label just toggles the dropdown
-                            if (isMobile) {
-                              e.preventDefault();
-                              setOpenMenu(openMenu === idx ? null : idx);
-                            } else {
-                              // Desktop: navigate; close the dropdown
-                              setOpenMenu(null);
-                            }
-                          }}
+                    {!isMobile &&
+                      megaMenus.map((menu, idx) => (
+                        <li
+                          key={menu.label}
+                          className={openMenu === idx ? "focus" : ""}
+                          onMouseEnter={() => openMenuAt(idx)}
+                          onMouseLeave={() => scheduleClose()}
                         >
-                          {menu.label}
-                          <span className="submenu-indicator">
-                            <span className="submenu-indicator-chevron" />
-                          </span>
+                          <Link
+                            href={menu.href}
+                            onClick={() => setOpenMenu(null)}
+                          >
+                            {menu.label}
+                            <span className="submenu-indicator">
+                              <span className="submenu-indicator-chevron" />
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    {!isMobile && (
+                      <li>
+                        <Link
+                          href="/location"
+                          onClick={() => setOpenMenu(null)}
+                        >
+                          위치 안내
                         </Link>
-                        {isMobile && openMenu === idx && (
-                          <ul className="mobile-submenu">
-                            {menu.items.map((item) => (
-                              <li key={item.href}>
-                                <Link
-                                  href={item.href}
-                                  onClick={() => {
-                                    setOpenMenu(null);
-                                    setOffCanvasOpen(false);
-                                  }}
-                                >
-                                  <img src={item.icon} alt="" />
-                                  <span>{item.label}</span>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
                       </li>
-                    ))}
-                    <li>
-                      <Link
-                        href="/location"
-                        onClick={() => {
-                          setOpenMenu(null);
-                          setOffCanvasOpen(false);
-                        }}
-                      >
-                        위치 안내
-                      </Link>
-                    </li>
+                    )}
                   </ul>
-                  <div className="nav-cta">
-                    <a href={contactInfo.phoneRaw}>
-                      <button>
-                        <span>{contactInfo.phone}</span>
-                      </button>
-                    </a>
-                  </div>
+                  {!isMobile && (
+                    <div className="nav-cta">
+                      <a href={contactInfo.phoneRaw}>
+                        <button>
+                          <span>{contactInfo.phone}</span>
+                        </button>
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </nav>

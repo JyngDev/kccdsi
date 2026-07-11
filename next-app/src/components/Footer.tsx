@@ -20,7 +20,7 @@ export default function Footer() {
             </Link>
             <div className="site-footer__contact">
               <div className="site-footer__contact-line">
-                고객 센터{" "}
+                <span className="site-footer__contact-label">고객 센터</span>
                 <a
                   className="site-footer__contact-value has-tooltip"
                   href={contactInfo.phoneRaw}
@@ -31,10 +31,11 @@ export default function Footer() {
                 </a>
               </div>
               <div className="site-footer__contact-line">
-                팩스 <span className="site-footer__contact-value">{contactInfo.fax}</span>
+                <span className="site-footer__contact-label">팩스</span>
+                <span className="site-footer__contact-value">{contactInfo.fax}</span>
               </div>
               <div className="site-footer__contact-line">
-                이메일{" "}
+                <span className="site-footer__contact-label">이메일</span>
                 <a
                   className="site-footer__contact-value has-tooltip"
                   href={`mailto:${contactInfo.email}`}
@@ -45,7 +46,8 @@ export default function Footer() {
                 </a>
               </div>
               <div className="site-footer__contact-line">
-                영업시간 평일 08:00~18:00 · 토 08:00~12:00 · 일 휴무
+                <span className="site-footer__contact-label">영업시간</span>
+                <span>평일 08:00~18:00 · 토 08:00~12:00 · 일 휴무</span>
               </div>
             </div>
           </div>
@@ -53,9 +55,12 @@ export default function Footer() {
           <nav className="site-footer__nav" aria-label="Footer">
             {footerSections.map((section, idx) => (
               <div key={idx} className="site-footer__col">
-                {section.label.trim() && (
-                  <h4 className="site-footer__col-title">{section.label}</h4>
-                )}
+                <h4
+                  className="site-footer__col-title"
+                  aria-hidden={!section.label.trim() || undefined}
+                >
+                  {section.label.trim() || " "}
+                </h4>
                 <ul className="site-footer__col-list">
                   {section.links.map((link) => (
                     <li key={link.href}>

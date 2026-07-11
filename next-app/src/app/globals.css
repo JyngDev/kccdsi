@@ -324,7 +324,7 @@ button {
   margin-bottom: 24px;
 }
 .home-v2__h1 {
-  font-size: clamp(44px, 6.4vw, 88px);
+  font-size: clamp(48px, 6.4vw, 88px);
   font-weight: 700;
   line-height: 1.2;
   color: var(--hv2-ink);
@@ -341,7 +341,7 @@ button {
   border-radius: 0;
 }
 .home-v2__h2 {
-  font-size: clamp(30px, 3.6vw, 48px);
+  font-size: clamp(28px, 3.6vw, 48px);
   font-weight: 700;
   line-height: 1.4;
   color: var(--hv2-ink);
@@ -984,11 +984,17 @@ button {
   }
 }
 @media (max-width: 991px) {
-  .home-v2 { --hv2-section-y: 96px; }
+  .home-v2 { --hv2-section-y: 64px; }
+  .home-v2__hero { padding-top: 80px; }
   .home-v2__container { padding: 0 20px; }
   .home-v2__hero-copy { padding-bottom: 48px; }
-  .home-v2__section-head { margin-bottom: 48px; }
+  .home-v2__section-head { margin-bottom: 32px; }
   .home-v2__hero-image { border-radius: 14px; aspect-ratio: 3 / 2; }
+  .home-v2__product-card { border-radius: 12px; }
+  .home-v2__product-title { font-size: 18px; }
+  .home-v2__product-desc { display: none; }
+  .home-v2__sub-card { border-radius: 12px; }
+  .home-v2__pillar-title { font-size: 18px; }
   .home-v2__hero-metrics { padding-top: 48px; }
   .home-v2__hero-metrics-inner {
     grid-template-columns: repeat(3, 1fr);
@@ -1011,7 +1017,7 @@ button {
     gap: 32px;
   }
   .home-v2__pillar-grid { gap: 12px; }
-  .home-v2__pillar { padding: 20px 22px; gap: 18px; }
+  .home-v2__pillar { padding: 20px 22px; column-gap: 18px; row-gap: 8px; }
   .home-v2__contact-inner { grid-template-columns: 1fr; gap: 40px; }
   .home-v2__contact-map { height: 360px; }
   .home-v2__product-body { padding: 24px 24px 28px !important; }
@@ -1019,13 +1025,92 @@ button {
 @media (max-width: 640px) {
   .home-v2__product-grid { grid-template-columns: repeat(2, 1fr); }
   .home-v2__hero-metrics-inner {
-    padding: 20px 24px !important;
+    padding: 16px 24px !important;
     grid-template-columns: repeat(3, max-content);
   }
   .home-v2__hero-metrics-inner > div { padding: 0 16px; }
   .home-v2__metric-value { font-size: 24px !important; }
   .home-v2__metric-label { font-size: 12px; }
   .home-v2__cta-row { gap: 20px; }
+  .home-v2__hero .home-v2__h1-accent { font-size: 24px; }
+  .home-v2__hero .home-v2__hl { font-size: 24px; }
+}
+
+/* ============================================================
+   Mobile Bottom Nav — fixed at viewport bottom (≤991px)
+   ============================================================ */
+.mobile-bnav {
+  display: none;
+}
+@media (max-width: 991px) {
+  .mobile-bnav {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .mobile-bnav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .mobile-bnav__item {
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-bnav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 60px;
+    padding: 6px 4px;
+    color: var(--gray-500, #6b7280);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .mobile-bnav__link svg {
+    stroke: currentColor;
+    color: inherit;
+  }
+  .mobile-bnav__label {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .mobile-bnav__link.is-active {
+    color: #0071e3;
+  }
+  /* leave room for the bottom nav so content isn't hidden behind it */
+  body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+  /* lift the phone float button above the bottom nav */
+  .mobile-float-btn {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  /* hide the phone float button while the drawer is open — otherwise it
+     visually shifts as the drawer overlay changes safe-area & scroll state */
+  body.no-scroll .mobile-float-btn {
+    display: none !important;
+  }
+  .mobile-float-btn button {
+    width: 64px !important;
+    height: 64px !important;
+    background-color: #0071e3 !important;
+    font-size: 20px !important;
+  }
 }
 
 /* ============================================================
@@ -1109,10 +1194,16 @@ footer.site-footer li {
   text-wrap: nowrap;
   overflow-wrap: normal;
   word-break: keep-all;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.site-footer__contact-label {
+  flex-shrink: 0;
+  min-width: 64px;
 }
 .site-footer__contact-line a {
   display: inline;
-  padding-left: 4px;
   color: inherit;
   text-decoration: none;
 }
@@ -1182,6 +1273,10 @@ footer.site-footer .site-footer__contact-line a:focus-visible {
   color: #111 !important;
   margin: 0 0 16px 0;
   letter-spacing: -0.01em;
+  min-height: 1.4em;
+}
+.site-footer__col-title[aria-hidden="true"] {
+  visibility: hidden;
 }
 .site-footer__col-list {
   list-style: none;
@@ -2396,6 +2491,105 @@ header.megamenu-open {
     max-width: 360px;
     padding-top: 12px;
   }
+
+  /* Drawer quick-nav — underline tabs + 2-column image grid */
+  .drawer-quicknav,
+  .drawer-quicknav *,
+  .drawer-quicknav *::before,
+  .drawer-quicknav *::after {
+    box-sizing: border-box;
+  }
+  .drawer-quicknav {
+    padding: 4px 0 20px;
+  }
+  .drawer-quicknav__tabs {
+    display: flex;
+    border-bottom: 1px solid var(--gray-200, #e5e7eb);
+    margin: 0 16px 16px;
+  }
+  .drawer-quicknav__tab {
+    flex: 1 1 0;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-500, #6b7280);
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.15s ease;
+  }
+  .drawer-quicknav__tab.is-active {
+    color: #111;
+  }
+  .drawer-quicknav__tab.is-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: #111;
+    border-radius: 2px;
+  }
+  .drawer-quicknav__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 16px;
+    padding-bottom: 24px;
+  }
+  .drawer-quicknav__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: #111;
+    transition: border-color 0.15s ease, opacity 0.15s ease;
+  }
+  .drawer-quicknav__tile:hover,
+  .drawer-quicknav__tile:active {
+    opacity: 0.85;
+  }
+  .drawer-quicknav__tile.is-current {
+    border-color: #000;
+  }
+  .drawer-quicknav__tile-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 8%;
+  }
+  .drawer-quicknav__tile-img img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .drawer-quicknav__tile-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--gray-700, #374151);
+    word-break: keep-all;
+    text-align: center;
+  }
   .navigation-portrait .nav-menu {
     display: block !important;
   }
@@ -2426,6 +2620,41 @@ header.megamenu-open {
   .navigation-portrait .nav-cta a,
   .navigation-portrait .nav-cta button {
     width: 100%;
+  }
+  .navigation-portrait .nav-cta button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px;
+    height: 48px !important;
+    padding: 0 18px !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    border: 1px solid rgba(0, 0, 0, 0.7) !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .navigation-portrait .nav-cta button span {
+    color: #000 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+  }
+  .navigation-portrait .nav-cta button:hover,
+  .navigation-portrait .nav-cta button:active {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  .navigation-portrait .nav-cta button:hover span,
+  .navigation-portrait .nav-cta button:active span {
+    color: #fff !important;
   }
   .navigation-portrait .nav-menus-wrapper-close-button {
     font-size: 22px;
@@ -2492,7 +2721,7 @@ header.megamenu-open {
   /* --- drawer header row: logo + X aligned on same baseline --- */
   .navigation-portrait .nav-menus-wrapper {
     position: fixed !important;
-    padding-top: 64px !important;
+    padding-top: 56px !important;
   }
   .navigation-portrait .m-nav-logo {
     position: absolute !important;
@@ -2542,7 +2771,7 @@ header.megamenu-open {
   body > header, header {
     height: 56px !important;
   }
-  .navigation, .main_header_area, .header_area {
+  .navigation, .main_header_area, .main_header_area.animated, .header_area {
     height: 56px !important;
   }
   .nav-brand img {
@@ -2587,7 +2816,7 @@ header.megamenu-open {
   .home-v2__sub-card { min-height: 220px; padding: 22px 16px 20px; }
   .home-v2__sub-icon { height: 130px; }
   .home-v2__sub-icon img { max-width: 130px; max-height: 130px; }
-  .home-v2__sub-label { font-size: 14px; }
+  .home-v2__sub-label { font-size: 16px; }
 }
 
 /* mobile sidebar dropdown — hidden on desktop */
@@ -2716,6 +2945,26 @@ header.megamenu-open {
   left: 178px !important;
   transform: none !important;
 }
+/* Mobile — shrink the info window so it fits narrow viewports */
+@media (max-width: 640px) {
+  #map div:has(> .iw_inner) {
+    width: 260px !important;
+  }
+  .iw_inner {
+    padding: 12px !important;
+  }
+  #map h3 {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+  .iw_inner p {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  #map div:has(> .iw_inner) > div[style*="border-width: 24px 10px 0px"] {
+    left: 128px !important;
+  }
+}
 .location-v2__info {
   padding: 8px 0;
 }
@@ -2833,7 +3082,7 @@ header.megamenu-open {
 }
 
 @media (max-width: 640px) {
-  .home-v2__brand-row { gap: 12px; margin-top: 20px; }
+  .home-v2__brand-row { gap: 4px; margin-top: 20px; }
   .home-v2__brand-logo { height: 26px; }
-  .home-v2__brand-name { font-size: 18px; }
+  .home-v2__brand-name { font-size: 24px; }
 }

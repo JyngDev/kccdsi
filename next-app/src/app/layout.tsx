@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import RightFloat from "@/components/RightFloat";
 import MobileFloatBtn from "@/components/MobileFloatBtn";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import AOSProvider from "@/components/AOSProvider";
 import RellaxProvider from "@/components/RellaxProvider";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
         <RightFloat />
         <MobileFloatBtn />
         <Footer />
+        <MobileBottomNav />
       </body>
     </html>
   );

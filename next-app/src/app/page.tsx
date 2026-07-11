@@ -158,7 +158,7 @@ export default function HomePage() {
             <HeroWordRoll />
           </h1>
           <div className="home-v2__brand-row">
-            <span className="home-v2__h1-accent">KCC & 벽산 <mark className="home-v2__hl">안산·시흥</mark> 총판매점</span>
+            <span className="home-v2__h1-accent">KCC & 벽산 <mark className="home-v2__hl">안산 · 시흥</mark> 총판매점</span>
             <div className="home-v2__brand-pair">
               <img
                 className="home-v2__brand-logo"
