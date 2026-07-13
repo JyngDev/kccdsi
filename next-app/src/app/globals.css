@@ -13,6 +13,12 @@ html,
 body {
   padding: 0;
   margin: 0;
+  /* Lock text sizing to the site's CSS values — ignore the phone's
+     system font-size (Dynamic Type on iOS, font scale on Android). */
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 /* global letter-spacing reset */
