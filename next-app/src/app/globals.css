@@ -21,6 +21,14 @@ body {
   -ms-text-size-adjust: 100%;
 }
 
+/* utility: line break that only renders on mobile viewports */
+.br-mobile-only { display: none; }
+.space-desktop-only { display: inline; white-space: pre; }
+@media (max-width: 640px) {
+  .br-mobile-only { display: inline; }
+  .space-desktop-only { display: none; }
+}
+
 /* global letter-spacing reset */
 *,
 *::before,
@@ -951,10 +959,13 @@ button {
   .home-v2__quote-slide {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   .home-v2__quote-slide .home-v2__quote-meta {
     margin-top: auto;
+    justify-content: center;
   }
+  .home-v2__quote { margin-bottom: 16px; }
 }
 
 /* ---------- CONTACT — refined 2-up, compact ---------- */
@@ -1002,7 +1013,7 @@ button {
 @media (max-width: 991px) {
   .home-v2 { --hv2-section-y: 64px; }
   .home-v2__hero { padding-top: 80px; }
-  .home-v2__container { padding: 0 20px; margin-top: 32px; }
+  .home-v2__container { padding: 0 20px; }
   .home-v2__hero-copy { padding-bottom: 48px; }
   .home-v2__section-head { margin-bottom: 32px; }
   .home-v2__hero-image { border-radius: 14px; aspect-ratio: 3 / 2; }

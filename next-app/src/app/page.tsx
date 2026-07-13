@@ -254,7 +254,9 @@ export default function HomePage() {
         <div className="home-v2__container">
           <div className="home-v2__section-head">
             <h2 className="home-v2__h2">
-              현장을 아는 대성단열의 세 가지 약속.
+              현장을 아는 대성단열의
+              <br className="br-mobile-only" />
+              <span className="space-desktop-only"> </span>세 가지 약속.
             </h2>
           </div>
           <div className="home-v2__pillar-grid">
